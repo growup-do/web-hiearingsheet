@@ -23,6 +23,59 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // ページ追加機能
+  const pagesGroup = document.querySelector('input[name="pages"]').closest('.checkbox-group');
+  const addPageInput = document.getElementById('addPageInput');
+  const addPageBtn = document.getElementById('addPageBtn');
+
+  function createPageItem(name, checked) {
+    const label = document.createElement('label');
+    label.className = 'checkbox-label page-item';
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.name = 'pages';
+    cb.value = name;
+    cb.checked = checked;
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'delete-page-btn';
+    btn.title = '削除';
+    btn.innerHTML = '&times;';
+    label.appendChild(cb);
+    label.appendChild(document.createTextNode(' ' + name + ' '));
+    label.appendChild(btn);
+    return label;
+  }
+
+  addPageBtn.addEventListener('click', () => {
+    const name = addPageInput.value.trim();
+    if (!name) return;
+    // 重複チェック
+    const existing = Array.from(pagesGroup.querySelectorAll('input[name="pages"]')).map(cb => cb.value);
+    if (existing.includes(name)) {
+      addPageInput.value = '';
+      return;
+    }
+    const item = createPageItem(name, true);
+    pagesGroup.appendChild(item);
+    addPageInput.value = '';
+  });
+
+  addPageInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      addPageBtn.click();
+    }
+  });
+
+  // ページ削除機能（イベント委譲）
+  pagesGroup.addEventListener('click', (e) => {
+    if (e.target.classList.contains('delete-page-btn')) {
+      e.preventDefault();
+      e.target.closest('.page-item').remove();
+    }
+  });
+
   // スクロールでプログレスバー更新
   window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY;

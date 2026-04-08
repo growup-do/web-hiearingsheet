@@ -92,6 +92,7 @@
             <label class="checkbox-label"><input type="checkbox" name="targetAction" value="会員登録"> 会員登録</label>
             <label class="checkbox-label"><input type="checkbox" name="targetAction" value="来店・来社"> 来店・来社</label>
             <label class="checkbox-label"><input type="checkbox" name="targetAction" value="電話連絡"> 電話連絡</label>
+            <label class="checkbox-label"><input type="checkbox" name="targetAction" value="応募"> 応募</label>
           </div>
         </div>
       </section>
@@ -136,17 +137,21 @@
         <div class="form-group">
           <label>必要なページ</label>
           <div class="checkbox-group">
-            <label class="checkbox-label"><input type="checkbox" name="pages" value="トップページ"> トップページ</label>
-            <label class="checkbox-label"><input type="checkbox" name="pages" value="会社概要・about"> 会社概要・about</label>
-            <label class="checkbox-label"><input type="checkbox" name="pages" value="サービス紹介"> サービス紹介</label>
-            <label class="checkbox-label"><input type="checkbox" name="pages" value="料金表"> 料金表</label>
-            <label class="checkbox-label"><input type="checkbox" name="pages" value="実績・事例"> 実績・事例</label>
-            <label class="checkbox-label"><input type="checkbox" name="pages" value="お客様の声"> お客様の声</label>
-            <label class="checkbox-label"><input type="checkbox" name="pages" value="ブログ・お知らせ"> ブログ・お知らせ</label>
-            <label class="checkbox-label"><input type="checkbox" name="pages" value="よくある質問（FAQ）"> よくある質問（FAQ）</label>
-            <label class="checkbox-label"><input type="checkbox" name="pages" value="お問い合わせ"> お問い合わせ</label>
-            <label class="checkbox-label"><input type="checkbox" name="pages" value="プライバシーポリシー"> プライバシーポリシー</label>
-            <label class="checkbox-label"><input type="checkbox" name="pages" value="採用情報"> 採用情報</label>
+            <label class="checkbox-label page-item"><input type="checkbox" name="pages" value="トップページ" checked> トップページ <button type="button" class="delete-page-btn" title="削除">&times;</button></label>
+            <label class="checkbox-label page-item"><input type="checkbox" name="pages" value="会社概要・about"> 会社概要・about <button type="button" class="delete-page-btn" title="削除">&times;</button></label>
+            <label class="checkbox-label page-item"><input type="checkbox" name="pages" value="サービス紹介"> サービス紹介 <button type="button" class="delete-page-btn" title="削除">&times;</button></label>
+            <label class="checkbox-label page-item"><input type="checkbox" name="pages" value="料金表"> 料金表 <button type="button" class="delete-page-btn" title="削除">&times;</button></label>
+            <label class="checkbox-label page-item"><input type="checkbox" name="pages" value="実績・事例"> 実績・事例 <button type="button" class="delete-page-btn" title="削除">&times;</button></label>
+            <label class="checkbox-label page-item"><input type="checkbox" name="pages" value="お客様の声"> お客様の声 <button type="button" class="delete-page-btn" title="削除">&times;</button></label>
+            <label class="checkbox-label page-item"><input type="checkbox" name="pages" value="ブログ・お知らせ"> ブログ・お知らせ <button type="button" class="delete-page-btn" title="削除">&times;</button></label>
+            <label class="checkbox-label page-item"><input type="checkbox" name="pages" value="よくある質問（FAQ）"> よくある質問（FAQ） <button type="button" class="delete-page-btn" title="削除">&times;</button></label>
+            <label class="checkbox-label page-item"><input type="checkbox" name="pages" value="お問い合わせ"> お問い合わせ <button type="button" class="delete-page-btn" title="削除">&times;</button></label>
+            <label class="checkbox-label page-item"><input type="checkbox" name="pages" value="プライバシーポリシー"> プライバシーポリシー <button type="button" class="delete-page-btn" title="削除">&times;</button></label>
+            <label class="checkbox-label page-item"><input type="checkbox" name="pages" value="採用情報"> 採用情報 <button type="button" class="delete-page-btn" title="削除">&times;</button></label>
+          </div>
+          <div class="add-page-row">
+            <input type="text" id="addPageInput" placeholder="追加したいページ名を入力">
+            <button type="button" id="addPageBtn" class="btn btn-add">追加</button>
           </div>
         </div>
         <div class="form-group">
