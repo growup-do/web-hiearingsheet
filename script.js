@@ -129,16 +129,40 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 起動時に下書き復元
-  const saved = localStorage.getItem('hearingSheetDraft');
-  if (saved) {
+  // 起動時にURLハッシュ or localStorage から復元
+  const hashData = window.location.hash.slice(1);
+  if (hashData) {
     try {
-      restoreFormData(JSON.parse(saved));
-      // 「その他」チェック状態に応じて入力欄を表示
+      const json = decodeURIComponent(atob(hashData));
+      const data = JSON.parse(json);
+      // カスタムページがあれば先に追加
+      if (data._customPages) {
+        data._customPages.forEach(name => {
+          const existing = Array.from(pagesGroup.querySelectorAll('input[name="pages"]')).map(cb => cb.value);
+          if (!existing.includes(name)) {
+            pagesGroup.appendChild(createPageItem(name, false));
+          }
+        });
+        delete data._customPages;
+      }
+      restoreFormData(data);
       siteTypeOtherGroup.style.display = siteTypeOther.checked ? 'block' : 'none';
-      showToast('下書きを復元しました');
+      showToast('共有データを読み込みました');
+      // ハッシュをクリア（URLをきれいに）
+      history.replaceState(null, '', window.location.pathname);
     } catch (e) {
       // ignore
+    }
+  } else {
+    const saved = localStorage.getItem('hearingSheetDraft');
+    if (saved) {
+      try {
+        restoreFormData(JSON.parse(saved));
+        siteTypeOtherGroup.style.display = siteTypeOther.checked ? 'block' : 'none';
+        showToast('下書きを復元しました');
+      } catch (e) {
+        // ignore
+      }
     }
   }
 
@@ -147,6 +171,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const data = getFormData();
     localStorage.setItem('hearingSheetDraft', JSON.stringify(data));
     showToast('下書きを保存しました');
+  });
+
+  // 共有URL生成
+  const shareBtn = document.getElementById('shareBtn');
+  shareBtn.addEventListener('click', () => {
+    const data = getFormData();
+    // デフォルトにないカスタムページを記録
+    const defaultPages = ['トップページ','会社概要・about','サービス紹介','料金表','実績・事例','お客様の声','ブログ・お知らせ','よくある質問（FAQ）','お問い合わせ','プライバシーポリシー','採用情報'];
+    const allPageValues = Array.from(pagesGroup.querySelectorAll('input[name="pages"]')).map(cb => cb.value);
+    const customPages = allPageValues.filter(p => !defaultPages.includes(p));
+    if (customPages.length > 0) {
+      data._customPages = customPages;
+    }
+    const json = JSON.stringify(data);
+    const encoded = btoa(encodeURIComponent(json));
+    const url = window.location.origin + window.location.pathname + '#' + encoded;
+    document.getElementById('shareUrl').value = url;
+    document.getElementById('shareModal').classList.add('active');
+  });
+
+  // URLコピー
+  document.getElementById('copyShareUrl').addEventListener('click', () => {
+    const urlField = document.getElementById('shareUrl');
+    urlField.select();
+    navigator.clipboard.writeText(urlField.value).then(() => {
+      showToast('URLをコピーしました');
+    });
   });
 
   // 自動保存（30秒ごと）

@@ -261,8 +261,22 @@
       <!-- 送信ボタン -->
       <div class="form-actions">
         <button type="button" id="saveBtn" class="btn btn-secondary">下書き保存</button>
+        <button type="button" id="shareBtn" class="btn btn-secondary">共有URLを生成</button>
         <button type="button" id="exportBtn" class="btn btn-secondary">PDF出力</button>
         <button type="submit" class="btn btn-primary">送信する</button>
+      </div>
+
+      <!-- 共有URLモーダル -->
+      <div id="shareModal" class="modal">
+        <div class="modal-content">
+          <h3>共有URL</h3>
+          <p>以下のURLをクライアントに送ってください。<br>入力済みの内容が反映された状態で開きます。</p>
+          <textarea id="shareUrl" rows="3" readonly style="width:100%;font-size:12px;word-break:break-all;margin-bottom:16px;"></textarea>
+          <div style="display:flex;gap:8px;justify-content:center;">
+            <button type="button" class="btn btn-primary" id="copyShareUrl">URLをコピー</button>
+            <button type="button" class="btn btn-secondary" onclick="document.getElementById('shareModal').classList.remove('active')">閉じる</button>
+          </div>
+        </div>
       </div>
     </form>
 
