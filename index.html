@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webサイト制作 ヒアリングシート</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="logo.svg" alt="GROW UP" class="header-logo">
+      <h1>Webサイト制作 ヒアリングシート</h1>
+      <p class="subtitle">ご要望をお聞かせください。最適なWebサイトをご提案いたします。</p>
+    </header>
+
+    <form id="hearingForm">
+      <!-- セクション1: 基本情報 -->
+      <section class="form-section">
+        <div class="section-header">
+          <span class="section-number">01</span>
+          <h2>基本情報</h2>
+        </div>
+        <div class="form-group">
+          <label for="companyName">会社名・屋号 <span class="required">必須</span></label>
+          <input type="text" id="companyName" name="companyName" required placeholder="例：株式会社サンプル">
+        </div>
+        <div class="form-group">
+          <label for="businessType">業種・事業内容 <span class="required">必須</span></label>
+          <input type="text" id="businessType" name="businessType" required placeholder="例：飲食業、ITサービス、不動産業など">
+        </div>
+      </section>
+
+      <!-- セクション2: サイトの目的 -->
+      <section class="form-section">
+        <div class="section-header">
+          <span class="section-number">02</span>
+          <h2>サイトの目的・種類</h2>
+        </div>
+        <div class="form-group">
+          <label>サイトの種類 <span class="required">必須</span></label>
+          <div class="checkbox-group">
+            <label class="checkbox-label"><input type="checkbox" name="siteType" value="コーポレートサイト"> コーポレートサイト</label>
+            <label class="checkbox-label"><input type="checkbox" name="siteType" value="LP（ランディングページ）"> LP（ランディングページ）</label>
+            <label class="checkbox-label"><input type="checkbox" name="siteType" value="ECサイト"> ECサイト</label>
+            <label class="checkbox-label"><input type="checkbox" name="siteType" value="ブログ・メディア"> ブログ・メディア</label>
+            <label class="checkbox-label"><input type="checkbox" name="siteType" value="ポートフォリオ"> ポートフォリオ</label>
+            <label class="checkbox-label"><input type="checkbox" name="siteType" value="採用サイト"> 採用サイト</label>
+            <label class="checkbox-label"><input type="checkbox" name="siteType" value="その他" id="siteTypeOther"> その他</label>
+          </div>
+          <div class="form-group" id="siteTypeOtherGroup" style="display: none; margin-top: 12px;">
+            <input type="text" id="siteTypeOtherText" name="siteTypeOtherText" placeholder="サイトの種類を入力してください">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="purpose">サイト制作の目的 <span class="required">必須</span></label>
+          <div class="checkbox-group">
+            <label class="checkbox-label"><input type="checkbox" name="purpose" value="集客・問い合わせ増加"> 集客・問い合わせ増加</label>
+            <label class="checkbox-label"><input type="checkbox" name="purpose" value="ブランディング"> ブランディング</label>
+            <label class="checkbox-label"><input type="checkbox" name="purpose" value="商品・サービスの販売"> 商品・サービスの販売</label>
+            <label class="checkbox-label"><input type="checkbox" name="purpose" value="情報発信"> 情報発信</label>
+            <label class="checkbox-label"><input type="checkbox" name="purpose" value="採用強化"> 採用強化</label>
+            <label class="checkbox-label"><input type="checkbox" name="purpose" value="既存サイトのリニューアル"> 既存サイトのリニューアル</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="currentSite">現在のサイトURL（リニューアルの場合）</label>
+          <input type="url" id="currentSite" name="currentSite" placeholder="例：https://example.com">
+        </div>
+        <div class="form-group">
+          <label for="currentIssue">現在のサイトの課題・不満点</label>
+          <textarea id="currentIssue" name="currentIssue" rows="3" placeholder="例：デザインが古い、スマホ対応していない、更新が難しい等"></textarea>
+        </div>
+      </section>
+
+      <!-- セクション3: ターゲット -->
+      <section class="form-section">
+        <div class="section-header">
+          <span class="section-number">03</span>
+          <h2>ターゲット</h2>
+        </div>
+        <div class="form-group">
+          <label for="targetUser">ターゲットユーザー <span class="required">必須</span></label>
+          <textarea id="targetUser" name="targetUser" rows="3" required placeholder="例：30〜40代の男性ビジネスパーソン、都市部在住、IT業界勤務"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="targetAction">ユーザーに期待するアクション</label>
+          <div class="checkbox-group">
+            <label class="checkbox-label"><input type="checkbox" name="targetAction" value="問い合わせ"> 問い合わせ</label>
+            <label class="checkbox-label"><input type="checkbox" name="targetAction" value="資料請求"> 資料請求</label>
+            <label class="checkbox-label"><input type="checkbox" name="targetAction" value="商品購入"> 商品購入</label>
+            <label class="checkbox-label"><input type="checkbox" name="targetAction" value="会員登録"> 会員登録</label>
+            <label class="checkbox-label"><input type="checkbox" name="targetAction" value="来店・来社"> 来店・来社</label>
+            <label class="checkbox-label"><input type="checkbox" name="targetAction" value="電話連絡"> 電話連絡</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- セクション4: デザイン -->
+      <section class="form-section">
+        <div class="section-header">
+          <span class="section-number">04</span>
+          <h2>デザイン・イメージ</h2>
+        </div>
+        <div class="form-group">
+          <label>サイトの雰囲気 <span class="required">必須</span></label>
+          <div class="checkbox-group">
+            <label class="checkbox-label"><input type="checkbox" name="atmosphere" value="シンプル・クリーン"> シンプル・クリーン</label>
+            <label class="checkbox-label"><input type="checkbox" name="atmosphere" value="高級感・上品"> 高級感・上品</label>
+            <label class="checkbox-label"><input type="checkbox" name="atmosphere" value="ポップ・親しみやすい"> ポップ・親しみやすい</label>
+            <label class="checkbox-label"><input type="checkbox" name="atmosphere" value="先進的・モダン"> 先進的・モダン</label>
+            <label class="checkbox-label"><input type="checkbox" name="atmosphere" value="信頼感・安心感"> 信頼感・安心感</label>
+            <label class="checkbox-label"><input type="checkbox" name="atmosphere" value="ナチュラル・温かみ"> ナチュラル・温かみ</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="colorPreference">希望のカラー・イメージ</label>
+          <input type="text" id="colorPreference" name="colorPreference" placeholder="例：青系で信頼感のある配色、コーポレートカラーは#003366">
+        </div>
+        <div class="form-group">
+          <label for="referenceSites">参考サイト（気に入っているサイトのURL）</label>
+          <textarea id="referenceSites" name="referenceSites" rows="3" placeholder="例：&#10;https://example1.com（デザインが好み）&#10;https://example2.com（機能が参考になる）"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="designNote">デザインに関するその他要望</label>
+          <textarea id="designNote" name="designNote" rows="3" placeholder="例：写真を多く使いたい、動きのあるサイトにしたい等"></textarea>
+        </div>
+      </section>
+
+      <!-- セクション5: コンテンツ・機能 -->
+      <section class="form-section">
+        <div class="section-header">
+          <span class="section-number">05</span>
+          <h2>コンテンツ・機能</h2>
+        </div>
+        <div class="form-group">
+          <label>必要なページ</label>
+          <div class="checkbox-group">
+            <label class="checkbox-label"><input type="checkbox" name="pages" value="トップページ"> トップページ</label>
+            <label class="checkbox-label"><input type="checkbox" name="pages" value="会社概要・about"> 会社概要・about</label>
+            <label class="checkbox-label"><input type="checkbox" name="pages" value="サービス紹介"> サービス紹介</label>
+            <label class="checkbox-label"><input type="checkbox" name="pages" value="料金表"> 料金表</label>
+            <label class="checkbox-label"><input type="checkbox" name="pages" value="実績・事例"> 実績・事例</label>
+            <label class="checkbox-label"><input type="checkbox" name="pages" value="お客様の声"> お客様の声</label>
+            <label class="checkbox-label"><input type="checkbox" name="pages" value="ブログ・お知らせ"> ブログ・お知らせ</label>
+            <label class="checkbox-label"><input type="checkbox" name="pages" value="よくある質問（FAQ）"> よくある質問（FAQ）</label>
+            <label class="checkbox-label"><input type="checkbox" name="pages" value="お問い合わせ"> お問い合わせ</label>
+            <label class="checkbox-label"><input type="checkbox" name="pages" value="プライバシーポリシー"> プライバシーポリシー</label>
+            <label class="checkbox-label"><input type="checkbox" name="pages" value="採用情報"> 採用情報</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>必要な機能</label>
+          <div class="checkbox-group">
+            <label class="checkbox-label"><input type="checkbox" name="features" value="お問い合わせフォーム"> お問い合わせフォーム</label>
+            <label class="checkbox-label"><input type="checkbox" name="features" value="ブログ・CMS機能"> ブログ・CMS機能</label>
+            <label class="checkbox-label"><input type="checkbox" name="features" value="SNS連携"> SNS連携</label>
+            <label class="checkbox-label"><input type="checkbox" name="features" value="Googleマップ埋め込み"> Googleマップ埋め込み</label>
+            <label class="checkbox-label"><input type="checkbox" name="features" value="写真ギャラリー"> 写真ギャラリー</label>
+            <label class="checkbox-label"><input type="checkbox" name="features" value="動画埋め込み"> 動画埋め込み</label>
+            <label class="checkbox-label"><input type="checkbox" name="features" value="予約システム"> 予約システム</label>
+            <label class="checkbox-label"><input type="checkbox" name="features" value="会員機能"> 会員機能</label>
+            <label class="checkbox-label"><input type="checkbox" name="features" value="EC（決済）機能"> EC（決済）機能</label>
+            <label class="checkbox-label"><input type="checkbox" name="features" value="多言語対応"> 多言語対応</label>
+            <label class="checkbox-label"><input type="checkbox" name="features" value="SEO対策"> SEO対策</label>
+            <label class="checkbox-label"><input type="checkbox" name="features" value="アクセス解析導入"> アクセス解析導入</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="otherFeatures">その他必要な機能</label>
+          <textarea id="otherFeatures" name="otherFeatures" rows="2" placeholder="例：チャットボット、予約カレンダー等"></textarea>
+        </div>
+      </section>
+
+      <!-- セクション6: 素材 -->
+      <section class="form-section">
+        <div class="section-header">
+          <span class="section-number">06</span>
+          <h2>素材・コンテンツ</h2>
+        </div>
+        <div class="form-group">
+          <label>ロゴデータ</label>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="logo" value="あり"> あり</label>
+            <label class="radio-label"><input type="radio" name="logo" value="なし（制作希望）"> なし（制作希望）</label>
+            <label class="radio-label"><input type="radio" name="logo" value="なし（不要）"> なし（不要）</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>写真素材</label>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="photos" value="自社で用意"> 自社で用意</label>
+            <label class="radio-label"><input type="radio" name="photos" value="撮影を依頼したい"> 撮影を依頼したい</label>
+            <label class="radio-label"><input type="radio" name="photos" value="素材サイトの写真でOK"> 素材サイトの写真でOK</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>テキスト原稿</label>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="text" value="自社で用意"> 自社で用意</label>
+            <label class="radio-label"><input type="radio" name="text" value="ライティングを依頼したい"> ライティングを依頼したい</label>
+            <label class="radio-label"><input type="radio" name="text" value="一部は用意、一部は依頼"> 一部は用意、一部は依頼</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- セクション7: 予算・スケジュール -->
+      <section class="form-section">
+        <div class="section-header">
+          <span class="section-number">07</span>
+          <h2>予算・スケジュール</h2>
+        </div>
+        <div class="form-group">
+          <label for="budget">ご予算 <span class="required">必須</span></label>
+          <select id="budget" name="budget" required>
+            <option value="">選択してください</option>
+            <option value="〜30万円">〜30万円</option>
+            <option value="30万円〜50万円">30万円〜50万円</option>
+            <option value="50万円〜100万円">50万円〜100万円</option>
+            <option value="100万円〜200万円">100万円〜200万円</option>
+            <option value="200万円〜300万円">200万円〜300万円</option>
+            <option value="300万円〜">300万円〜</option>
+            <option value="要相談">要相談</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="deadline">希望納期</label>
+          <input type="text" id="deadline" name="deadline" placeholder="例：2024年6月末まで、3ヶ月以内">
+        </div>
+        <div class="form-group">
+          <label>運用・保守</label>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="maintenance" value="運用保守を依頼したい"> 運用保守を依頼したい</label>
+            <label class="radio-label"><input type="radio" name="maintenance" value="自社で運用する"> 自社で運用する</label>
+            <label class="radio-label"><input type="radio" name="maintenance" value="未定"> 未定</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- セクション8: その他 -->
+      <section class="form-section">
+        <div class="section-header">
+          <span class="section-number">08</span>
+          <h2>その他</h2>
+        </div>
+        <div class="form-group">
+          <label for="competitors">競合サイト（意識しているサイト）</label>
+          <textarea id="competitors" name="competitors" rows="2" placeholder="例：https://competitor.com"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="otherRequests">その他ご要望・ご質問</label>
+          <textarea id="otherRequests" name="otherRequests" rows="4" placeholder="なんでもお気軽にご記入ください"></textarea>
+        </div>
+      </section>
+
+      <!-- 送信ボタン -->
+      <div class="form-actions">
+        <button type="button" id="saveBtn" class="btn btn-secondary">下書き保存</button>
+        <button type="button" id="exportBtn" class="btn btn-secondary">PDF出力</button>
+        <button type="submit" class="btn btn-primary">送信する</button>
+      </div>
+    </form>
+
+    <!-- 送信完了モーダル -->
+    <div id="completeModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-icon">&#10003;</div>
+        <h3>送信完了</h3>
+        <p>ヒアリングシートを送信しました。<br>内容を確認の上、担当者よりご連絡いたします。</p>
+        <button class="btn btn-primary" onclick="closeModal()">閉じる</button>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy;GROW UP Inc.</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
