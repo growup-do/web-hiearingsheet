@@ -166,11 +166,61 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 下書き保存
+  // JSONファイルで保存（ダウンロード）
   saveBtn.addEventListener('click', () => {
     const data = getFormData();
+    // カスタムページも保存
+    const defaultPages = ['トップページ','会社概要・about','サービス紹介','料金表','実績・事例','お客様の声','ブログ・お知らせ','よくある質問（FAQ）','お問い合わせ','プライバシーポリシー','採用情報'];
+    const allPageValues = Array.from(pagesGroup.querySelectorAll('input[name="pages"]')).map(cb => cb.value);
+    const customPages = allPageValues.filter(p => !defaultPages.includes(p));
+    if (customPages.length > 0) {
+      data._customPages = customPages;
+    }
+    const json = JSON.stringify(data, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const fileName = (data.companyName || 'ヒアリングシート') + '_' + new Date().toISOString().slice(0, 10) + '.json';
+    a.href = url;
+    a.download = fileName;
+    a.click();
+    URL.revokeObjectURL(url);
+    // localStorageにもバックアップ
     localStorage.setItem('hearingSheetDraft', JSON.stringify(data));
-    showToast('下書きを保存しました');
+    showToast('JSONファイルを保存しました');
+  });
+
+  // JSONファイル読み込み
+  const loadBtn = document.getElementById('loadBtn');
+  const loadFileInput = document.getElementById('loadFileInput');
+  loadBtn.addEventListener('click', () => loadFileInput.click());
+  loadFileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      try {
+        const data = JSON.parse(ev.target.result);
+        // カスタムページがあれば先に追加
+        if (data._customPages) {
+          data._customPages.forEach(name => {
+            const existing = Array.from(pagesGroup.querySelectorAll('input[name="pages"]')).map(cb => cb.value);
+            if (!existing.includes(name)) {
+              pagesGroup.appendChild(createPageItem(name, false));
+            }
+          });
+          delete data._customPages;
+        }
+        restoreFormData(data);
+        siteTypeOtherGroup.style.display = siteTypeOther.checked ? 'block' : 'none';
+        showToast('JSONファイルを読み込みました');
+      } catch (err) {
+        showToast('ファイルの読み込みに失敗しました');
+      }
+    };
+    reader.readAsText(file);
+    // 同じファイルを再選択できるようリセット
+    loadFileInput.value = '';
   });
 
   // 共有URL生成
